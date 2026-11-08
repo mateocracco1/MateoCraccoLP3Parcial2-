@@ -1,0 +1,86 @@
+﻿@page
+@model Parcial2.Pages.DocumentosModel
+@{
+    ViewData["Title"] = "Gestión de Documentos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+    <div>
+        <h2 class="mb-0 text-dark">Expediente de Documentos</h2>
+        <span class="text-muted">Cliente conectado: <strong>@Model.UsuarioActivo</strong></span>
+    </div>
+    <form method="post" asp-page-handler="CerrarSesion">
+        <button type="submit" class="btn btn-outline-danger btn-sm">Cerrar Sesión</button>
+    </form>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.Mensaje))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.Mensaje
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.MensajeError))
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @Model.MensajeError
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card border">
+            <div class="card-header bg-light py-3 border-bottom">
+                <h5 class="mb-0 text-dark">Subir Documento Legal</h5>
+            </div>
+            <div class="card-body p-4">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label asp-for="Archivo" class="form-label fw-semibold">Seleccionar archivo</label>
+                        <input asp-for="Archivo" type="file" class="form-control" />
+                        <span asp-validation-for="Archivo" class="text-danger small"></span>
+                        <div class="form-text">Formatos válidos: PDF, Word (.docx) o imágenes JPG/PNG.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Cargar Documento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="card border">
+            <div class="card-header bg-light py-3 border-bottom">
+                <h5 class="mb-0 text-dark">Documentos en el Servidor</h5>
+            </div>
+            <div class="card-body p-0">
+                @if (Model.ListaDocumentos.Count == 0)
+                {
+                    <div class="p-4 text-center text-muted">
+                        No hay documentos cargados en su expediente todavía.
+                    </div>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var doc in Model.ListaDocumentos)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                <span class="text-break">@doc</span>
+                                <a href="~/documentos/@doc" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                    Ver o Descargar
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

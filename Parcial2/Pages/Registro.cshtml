@@ -6,38 +6,36 @@
 
 <div class="row justify-content-center">
     <div class="col-md-7 col-lg-6">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-primary text-white py-3">
-                <h4 class="mb-0 fw-bold"><i class="bi bi-person-fill-add me-2"></i>Alta de Cliente</h4>
-                <small>Complete el formulario para acceder al sistema legal</small>
+        <div class="card border">
+            <div class="card-header bg-light py-3 border-bottom">
+                <h4 class="mb-0 text-dark">Alta de Cliente</h4>
+                <small class="text-muted">Complete el formulario para acceder al sistema</small>
             </div>
             <div class="card-body p-4">
-
-                <!-- Resumen de validación (ValidationSummary de Guía 07) -->
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                 <form method="post">
                     <div class="mb-3">
                         <label asp-for="NombreCompleto" class="form-label fw-semibold"></label>
-                        <input asp-for="NombreCompleto" class="form-control" placeholder="Ej. Mateo Cracco" />
+                        <input asp-for="NombreCompleto" class="form-control" />
                         <span asp-validation-for="NombreCompleto" class="text-danger small"></span>
                     </div>
 
                     <div class="mb-3">
                         <label asp-for="NombreUsuario" class="form-label fw-semibold"></label>
-                        <input asp-for="NombreUsuario" class="form-control" placeholder="Ej. mateocracco" />
+                        <input asp-for="NombreUsuario" class="form-control" />
                         <span asp-validation-for="NombreUsuario" class="text-danger small"></span>
                     </div>
 
                     <div class="row">
                         <div class="col-md-8 mb-3">
                             <label asp-for="Email" class="form-label fw-semibold"></label>
-                            <input asp-for="Email" class="form-control" placeholder="cliente@correo.com" />
+                            <input asp-for="Email" class="form-control" />
                             <span asp-validation-for="Email" class="text-danger small"></span>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label asp-for="Edad" class="form-label fw-semibold"></label>
-                            <input asp-for="Edad" class="form-control" type="number" min="1" placeholder="Ej. 25" />
+                            <input asp-for="Edad" class="form-control" type="number" />
                             <span asp-validation-for="Edad" class="text-danger small"></span>
                         </div>
                     </div>
@@ -55,9 +53,7 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg shadow-sm">
-                            <i ></i>Registrar
-                        </button>
+                        <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
                     </div>
                 </form>
             </div>
